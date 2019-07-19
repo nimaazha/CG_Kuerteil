@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 
 public class MovePlayer : MonoBehaviour
@@ -16,12 +15,6 @@ public class MovePlayer : MonoBehaviour
     //Audio attached to spaceship
     AudioSource audioSource;
 
-    //latest position of spaceship
-    Vector3 latestPosition;
-
-    //calculating how much the spaceship has been moved
-    float distanceTravelled;
-
     //start speed of the Spaceship
     float m_Speed;
 
@@ -34,11 +27,18 @@ public class MovePlayer : MonoBehaviour
     //minimum speed of the spaceship
     const float m_minSpeed = 50.0f;
 
+    //latest position of spaceship
+    Vector3 latestPosition;
+
+    //calculating how much the spaceship has been moved
+    float distanceTravelled;
+
     //showing altitude on the gamepanel
     public Text showAltitude;
 
     //showing speed on the gamepanel
     public Text showSpeed;
+
     float countSpeed;
 
     // Start is called before the first frame update
@@ -56,15 +56,12 @@ public class MovePlayer : MonoBehaviour
         //set the roatation speed
         rotationSpeed = 30.0f;
 
-        latestPosition = transform.position;
-
         //counting Altitude
         SetShowAltitude(latestPosition);
 
         //init var counting Speed
         countSpeed = 0.0f;
         setShowSpeed(countSpeed);
-
     }
 
     // Update is called once per frame
@@ -108,7 +105,9 @@ public class MovePlayer : MonoBehaviour
             {
                 m_Speed = m_maxSpeed;
             }
+
             countSpeed = m_Speed;
+
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -170,18 +169,6 @@ public class MovePlayer : MonoBehaviour
 
     }
 
-    void SetShowAltitude(Vector3 latestPosition)
-    {
-        //starting to show the altitude
-        showAltitude.text = "Altitude: " + latestPosition.y.ToString() + " Meter";
-    }
-
-    private void setShowSpeed(float countSpeed)
-    {
-        //starting to show the speed
-        showSpeed.text = "Speed: " + countSpeed.ToString() + " KmH";
-    }
-
     //check for the height of to simulate collision to the terrain
     void CheckHeightDifferential()
     {
@@ -199,10 +186,18 @@ public class MovePlayer : MonoBehaviour
     //this method is called in Class CollisionHandler by string refrence on collision of player to any object in the scene
     void PlayerIsDead()
     {
-        if (m_Speed > m_minSpeed)
-        {
-            isAlive = false;
-        }
-            
+        isAlive = false;
+    }
+
+    public void SetShowAltitude(Vector3 latestPosition)
+    {
+        //starting to show the altitude
+        showAltitude.text = "Altitude: " + latestPosition.y.ToString() + " Meter";
+    }
+
+    public void setShowSpeed(float countSpeed)
+    {
+        //starting to show the speed
+        showSpeed.text = "Speed: " + countSpeed.ToString() + " KmH";
     }
 }
