@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MovePlayer : MonoBehaviour
 {
     //to calculate the amount of fuel
-    FuelHandler fh = new FuelHandler();
+    FuelHandler fh;
 
     //check if player alive
     Boolean isAlive = true;
@@ -53,11 +53,17 @@ public class MovePlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        latestPosition = transform.position;
+
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody>();
 
         //Get component for audioSource
         audioSource = GetComponent<AudioSource>();
+
+        //
+        fh = GetComponent<FuelHandler>();
 
         //Set the speed of the GameObject
         m_Speed = 10.0f;
@@ -77,24 +83,22 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        latestPosition = transform.position;
-        distanceTravelled = Vector3.Distance(transform.position, latestPosition);
+        
+        print("dt: " + distanceTravelled);
 
         //showing information on game panel
         SetShowAltitude(latestPosition);
         setShowSpeed(countSpeed);
 
-        print("dt: " + distanceTravelled);
         //print(fh.Fuel);
         setShowFuel(fh.Fuel);
         
-
-        fh.CalcFuel(distanceTravelled);
     }
 
     // Here can things happen more than once in a frame
     void FixedUpdate()
     {
+
         //as long as player alive the controls are enabled
         if (isAlive && isFuelNotEmpty)
         {
@@ -126,6 +130,9 @@ public class MovePlayer : MonoBehaviour
 
             countSpeed = m_Speed;
 
+            distanceTravelled += Vector3.Distance(transform.position, latestPosition);
+            distanceTravelled = UnityEngine.Mathf.Round(distanceTravelled);
+            fh.CalcFuel(distanceTravelled);
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -187,20 +194,6 @@ public class MovePlayer : MonoBehaviour
 
     }
 
-    //check for the height of to simulate collision to the terrain
-    void CheckHeightDifferential()
-    {
-        //height of Terrain on the location where our player flights 
-        float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
-
-        //correcting the position of player in Y-Axis to not to go through Terrain
-        if (terrainHeight > transform.position.y)
-        {
-            transform.position = new Vector3(transform.position.x, terrainHeight + 1.4f, transform.position.z);
-            //Destroy(this);
-        }
-    }
-
     //this method is called in Class CollisionHandler by string refrence on collision of player to any object in the scene
     void PlayerIsDead()
     {
@@ -216,7 +209,7 @@ public class MovePlayer : MonoBehaviour
     public void SetShowAltitude(Vector3 latestPosition)
     {
         //starting to show the altitude
-        showAltitude.text = "Altitude: " + latestPosition.y.ToString() + " Meter";
+        showAltitude.text = "Altitude: " + transform.position.y.ToString() + " Meter";
     }
 
     public void setShowSpeed(float countSpeed)
@@ -227,6 +220,12 @@ public class MovePlayer : MonoBehaviour
 
     public void setShowFuel(int countFuel)
     {
+
+        if(countFuel <= 30)
+        {
+            showFuel.color = new Color(1f, 0.5f, 0.8f);
+        }
+
         //starting to show the fuel
         showFuel.text = "Fuel: " + countFuel.ToString() + " Liter";
     }

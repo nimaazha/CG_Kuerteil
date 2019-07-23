@@ -18,14 +18,23 @@ public class FuelHandler : MonoBehaviour
 
     public void CalcFuel(float distanceTravelled)
     {
-        if(fuel > 0)
+        int isRestZero = 1;
+
+        if (distanceTravelled > 4000)
         {
-            int isRestZero = (int)distanceTravelled % 100;
-            if (isRestZero == 0)
+            isRestZero = (int)distanceTravelled % 20000;
+            if(isRestZero <= 100)
             {
-                fuel -= 10;
+                isRestZero = 0;
             }
-        } else
+        }
+
+        if (fuel > 0 && isRestZero == 0)
+        {
+            fuel -= 10;
+        }
+
+        if(fuel == 0)
         {
             //here sends message to the MovePlayer script that the player is dead
             MakeExplosion();
@@ -33,7 +42,7 @@ public class FuelHandler : MonoBehaviour
             //here to invoke the RestartScene methode by string refrence
             Invoke("RestartScene", timeToLoad);
         }
-        
+
     }
 
     void MakeExplosion()
