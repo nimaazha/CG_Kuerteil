@@ -6,8 +6,14 @@ using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
+    //to calculate the amount of fuel
+    FuelHandler fh = new FuelHandler();
+
     //check if player alive
     Boolean isAlive = true;
+
+    //check if there is still fuel for the spaceship
+    Boolean isFuelNotEmpty = true;
 
     //Rigidbody attached to spaceship
     Rigidbody m_Rigidbody;
@@ -39,6 +45,9 @@ public class MovePlayer : MonoBehaviour
     //showing speed on the gamepanel
     public Text showSpeed;
 
+    //showing fuel on the gamepanel
+    public Text showFuel;
+
     float countSpeed;
 
     // Start is called before the first frame update
@@ -62,6 +71,7 @@ public class MovePlayer : MonoBehaviour
         //init var counting Speed
         countSpeed = 0.0f;
         setShowSpeed(countSpeed);
+
     }
 
     // Update is called once per frame
@@ -73,16 +83,24 @@ public class MovePlayer : MonoBehaviour
         //showing information on game panel
         SetShowAltitude(latestPosition);
         setShowSpeed(countSpeed);
+
+        print("dt: " + distanceTravelled);
+        //print(fh.Fuel);
+        setShowFuel(fh.Fuel);
+        
+
+        fh.CalcFuel(distanceTravelled);
     }
 
     // Here can things happen more than once in a frame
     void FixedUpdate()
     {
         //as long as player alive the controls are enabled
-        if (isAlive)
+        if (isAlive && isFuelNotEmpty)
         {
             EngineControl();
             MovementControl();
+
         }
 
     }
@@ -122,7 +140,7 @@ public class MovePlayer : MonoBehaviour
         //to avoid any unwanted rotation
         m_Rigidbody.freezeRotation = true;
 
-        //calc the deltaTimeFrame
+        //calculate the deltaTimeFrame
         float calcDeltaTime = Time.deltaTime * rotationSpeed;
 
         if (Input.GetKey(KeyCode.W))
@@ -189,6 +207,12 @@ public class MovePlayer : MonoBehaviour
         isAlive = false;
     }
 
+    //this method is called in Class FuelHandler by string refrence on having no more fuel and causes dead of the player
+    void FuelIsEmpty()
+    {
+        isFuelNotEmpty = false;
+    }
+
     public void SetShowAltitude(Vector3 latestPosition)
     {
         //starting to show the altitude
@@ -199,5 +223,11 @@ public class MovePlayer : MonoBehaviour
     {
         //starting to show the speed
         showSpeed.text = "Speed: " + countSpeed.ToString() + " KmH";
+    }
+
+    public void setShowFuel(int countFuel)
+    {
+        //starting to show the fuel
+        showFuel.text = "Fuel: " + countFuel.ToString() + " Liter";
     }
 }
