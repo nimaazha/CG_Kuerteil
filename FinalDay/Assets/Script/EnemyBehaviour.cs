@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     /*
-     * the first Idea of how to kill and delete the enemy from the scene was from unityDoc
+     * unityDoc
      * https://docs.unity3d.com/Manual/CreateDestroyObjects.html
      * https://docs.unity3d.com/ScriptReference/Quaternion-identity.html
      * https://docs.unity3d.com/Manual/class-ParticleSystem.html 

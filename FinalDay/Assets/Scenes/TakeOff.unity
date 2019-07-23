@@ -1103,6 +1103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507660854}
   - component: {fileID: 507660853}
+  - component: {fileID: 507660852}
   m_Layer: 0
   m_Name: OverheadCamera
   m_TagString: Untagged
@@ -1110,6 +1111,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &507660852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507660851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec7a66f11b45d7418b6538cbcc5ecd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisGameObject: {fileID: 686971548}
 --- !u!20 &507660853
 Camera:
   m_ObjectHideFlags: 0
@@ -1135,9 +1149,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 93.63371
-  orthographic: 1
-  orthographic size: 200
+  field of view: 100
+  orthographic: 0
+  orthographic size: 100
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
+
+    /*
+     * unityDoc
+     * https://docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+     * 
+     */
+
     //to calculate the amount of fuel
     FuelHandler fh;
 
