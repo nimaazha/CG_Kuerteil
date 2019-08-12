@@ -24,10 +24,10 @@ public class FuelHandler : MonoBehaviour
     {
         int isRestZero = 1;
 
-        if (distanceTravelled > 4000)
+        if (distanceTravelled >= 5000)
         {
-            isRestZero = (int)distanceTravelled % 20000;
-            if(isRestZero <= 100)
+            isRestZero = (int)distanceTravelled % 50000;
+            if (isRestZero <= 150)
             {
                 isRestZero = 0;
             }
@@ -38,7 +38,7 @@ public class FuelHandler : MonoBehaviour
             fuel -= 10;
         }
 
-        if(fuel == 0)
+        if (fuel == 0)
         {
             //here sends message to the MovePlayer script that the player is dead
             MakeExplosion();
@@ -47,6 +47,15 @@ public class FuelHandler : MonoBehaviour
             Invoke("RestartScene", timeToLoad);
         }
 
+    }
+
+    void PlayerIsOverFueltank()
+    {
+        fuel += 5;
+        if (fuel > 100)
+        {
+            fuel = 100;
+        }
     }
 
     void MakeExplosion()

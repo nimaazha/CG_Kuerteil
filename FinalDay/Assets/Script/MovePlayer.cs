@@ -141,6 +141,11 @@ public class MovePlayer : MonoBehaviour
             distanceTravelled = UnityEngine.Mathf.Round(distanceTravelled);
             fh.CalcFuel(distanceTravelled);
         }
+        // else if !(Input.GetKey(KeyCode.UpArrow)) AND m_speed > 0 then
+            // m_speed = m_speed - 1 oder so ähnlich.  auf jeden fall pro frame immer langsamer werden
+            // muss vielleicht auch in update statt fixed update
+
+
 
         if (Input.GetKey(KeyCode.DownArrow))
         {

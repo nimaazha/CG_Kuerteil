@@ -30,6 +30,21 @@ public class CollisionHandler : MonoBehaviour
         Invoke("RestartScene", timeToLoad);
     }
 
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "Fuel")
+        {
+            print("it is a hit");
+            Refuel();
+        }
+
+    }
+
+    void Refuel()
+    {
+        SendMessage("PlayerIsOverFueltank");
+    }
+
     void MakeExplosion()
     {
         //here to invoke the PlayerIsDead methode by string refrence
