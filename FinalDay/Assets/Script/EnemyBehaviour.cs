@@ -31,7 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = false;
-        boxCollider.size = new Vector3(0.5f, 0.5f, 0.5f);
+        boxCollider.size = new Vector3(1f, 1f, 1f);
     }
 
     void OnParticleCollision(GameObject other)

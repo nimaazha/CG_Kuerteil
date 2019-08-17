@@ -28,6 +28,11 @@ public class MovePlayer : MonoBehaviour
     //Audio attached to spaceship
     AudioSource audioSource;
 
+    //a list of the player weapons (particle system)
+    public ParticleSystem weaponRight;
+    public ParticleSystem weaponLeft;
+    public ParticleSystem weaponMiddle;
+
     //start speed of the Spaceship
     float m_Speed;
 
@@ -90,7 +95,7 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         print("dt: " + distanceTravelled);
 
         //showing information on game panel
@@ -99,7 +104,7 @@ public class MovePlayer : MonoBehaviour
 
         //print(fh.Fuel);
         setShowFuel(fh.Fuel);
-        
+
     }
 
     // Here can things happen more than once in a frame
@@ -111,7 +116,7 @@ public class MovePlayer : MonoBehaviour
         {
             EngineControl();
             MovementControl();
-
+            FireControl();
         }
 
     }
@@ -141,16 +146,11 @@ public class MovePlayer : MonoBehaviour
             distanceTravelled = UnityEngine.Mathf.Round(distanceTravelled);
             fh.CalcFuel(distanceTravelled);
         }
+
         // else if !(Input.GetKey(KeyCode.UpArrow)) AND m_speed > 0 then
-            // m_speed = m_speed - 1 oder so ähnlich.  auf jeden fall pro frame immer langsamer werden
-            // muss vielleicht auch in update statt fixed update
+        // m_speed = m_speed - 1 oder so ähnlich.  auf jeden fall pro frame immer langsamer werden
+        // muss vielleicht auch in update statt fixed update
 
-
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-
-        }
     }
 
 
@@ -206,6 +206,28 @@ public class MovePlayer : MonoBehaviour
 
     }
 
+    private void FireControl()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SetWeaponPower(true);
+        }
+        else
+        {
+            SetWeaponPower(false);
+        }
+    }
+
+    private void SetWeaponPower(bool isActive)
+    {
+        var emission_weaponMiddle = weaponMiddle.emission;
+        var emission_weaponLeft = weaponLeft.emission;
+        var emission_weaponRight = weaponRight.emission;
+        emission_weaponLeft.enabled = isActive;
+        emission_weaponRight.enabled = isActive;
+        emission_weaponMiddle.enabled = isActive;
+    }
+
     //this method is called in Class CollisionHandler by string refrence on collision of player to any object in the scene
     void PlayerIsDead()
     {
@@ -221,19 +243,19 @@ public class MovePlayer : MonoBehaviour
     public void SetShowAltitude(Vector3 latestPosition)
     {
         //starting to show the altitude
-        showAltitude.text = "Altitude: " + transform.position.y.ToString() + " Meter";
+        showAltitude.text = "Altitude: " + transform.position.y.ToString("0.00") + " Meter";
     }
 
     public void setShowSpeed(float countSpeed)
     {
         //starting to show the speed
-        showSpeed.text = "Speed: " + countSpeed.ToString() + " KmH";
+        showSpeed.text = "Speed: " + countSpeed.ToString("0.00") + " KmH";
     }
 
     public void setShowFuel(int countFuel)
     {
 
-        if(countFuel <= 30)
+        if (countFuel <= 30)
         {
             showFuel.color = new Color(1f, 0.5f, 0.8f);
         }

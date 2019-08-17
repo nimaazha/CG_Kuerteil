@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 public class EnemyRocketBehaviour : MonoBehaviour
 {
@@ -17,7 +13,7 @@ public class EnemyRocketBehaviour : MonoBehaviour
     public Transform deadEnemyClonelist;
 
     //range of seeing the player
-    float sightRange = 200.0f;
+    float sightRange = 500.0f;
 
     //this is the player to be targeted by this enemy rocket
     public Transform targetPlayer;
@@ -53,7 +49,7 @@ public class EnemyRocketBehaviour : MonoBehaviour
         transform.LookAt(targetPlayer.transform);
         transform.position += transform.forward * 70 * Time.deltaTime;
         distanceTravelled = Vector3.Distance(transform.position, latestPosition);
-        if(distanceTravelled > 50)
+        if(distanceTravelled > 200)
         {
             MakeExplosion();
         } 
@@ -67,6 +63,7 @@ public class EnemyRocketBehaviour : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        print("i am here");
         MakeExplosion();
     }
 

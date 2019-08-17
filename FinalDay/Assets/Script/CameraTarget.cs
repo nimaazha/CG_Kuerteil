@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-    Vector3 baseOffset = new Vector3(0, 2, -50);
+    Vector3 baseOffset = new Vector3(0, 3, -30);
     Vector3 offset;
     public GameObject thisGameObject;
 
@@ -15,7 +15,7 @@ public class CameraTarget : MonoBehaviour
         offset = staticOffset;
 
         transform.position = thisGameObject.transform.position + offset;
-
+        
         transform.LookAt(thisGameObject.transform.position);
     }
 }
