@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +27,7 @@ public class MovePlayer : MonoBehaviour
     Rigidbody m_Rigidbody;
 
     //Audio attached to spaceship
-    AudioSource audioSource;
+    public AudioSource[] audioSource;
 
     //a list of the player weapons (particle system)
     public ParticleSystem weaponRight;
@@ -43,7 +44,7 @@ public class MovePlayer : MonoBehaviour
     const float m_maxSpeed = 100.0f;
 
     //minimum speed of the spaceship
-    const float m_minSpeed = 50.0f;
+    const float m_minSpeed = 70.0f;
 
     //latest position of spaceship
     Vector3 latestPosition;
@@ -70,9 +71,6 @@ public class MovePlayer : MonoBehaviour
 
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody>();
-
-        //Get component for audioSource
-        audioSource = GetComponent<AudioSource>();
 
         //
         fh = GetComponent<FuelHandler>();
@@ -206,18 +204,31 @@ public class MovePlayer : MonoBehaviour
 
     }
 
+    //this method activates/disactivate the fire of laser guns attached to the player
     private void FireControl()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            SetWeaponPower(true);
+            SetWeaponPower(true);               //activating fire
+            StartCoroutine("PlaySound",0.2f);   //activating the sound of laser gun shot
         }
         else
         {
             SetWeaponPower(false);
+            audioSource[1].Stop();
         }
     }
 
+    //this method gives a pause between gun shots to help playing the sound of a shot correctly
+    IEnumerator PlaySound(float delayTime)
+    {
+        //wait the time defined at the delay parameter  
+        yield return new WaitForSeconds(delayTime);
+        audioSource[1].Play();
+        StopCoroutine("PlaySound");
+    }
+
+    //this method works togather with FireControl to control the fire of laser guns attached to the player
     private void SetWeaponPower(bool isActive)
     {
         var emission_weaponMiddle = weaponMiddle.emission;

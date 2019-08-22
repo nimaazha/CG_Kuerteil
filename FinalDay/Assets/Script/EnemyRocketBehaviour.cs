@@ -22,7 +22,7 @@ public class EnemyRocketBehaviour : MonoBehaviour
 
     float distanceTravelled;
 
-    Collider boxCollider;
+    BoxCollider boxCollider;
 
     public Vector3 latestPosition;
 
@@ -57,8 +57,10 @@ public class EnemyRocketBehaviour : MonoBehaviour
 
     private void AddBoxColliderToGameobject()
     {
-        boxCollider = gameObject.AddComponent<BoxCollider>();
+        gameObject.AddComponent<BoxCollider>();
+        boxCollider = gameObject.GetComponent<BoxCollider>();
         boxCollider.isTrigger = false;
+        boxCollider.size = new Vector3(1, 1, 4);
     }
 
     void OnParticleCollision(GameObject other)
