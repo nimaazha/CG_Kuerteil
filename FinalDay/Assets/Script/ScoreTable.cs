@@ -17,9 +17,9 @@ public class ScoreTable : MonoBehaviour
         scoreText.text = "Scores: " + scores.ToString();
     }
 
-    public void HitScoreboard(int scoreSent)
+    public void HitScoreboard()
     {
-        scores += scoreSent;
+        scores++;
         scoreText.text = "Scores: " + scores.ToString();
     }
 }

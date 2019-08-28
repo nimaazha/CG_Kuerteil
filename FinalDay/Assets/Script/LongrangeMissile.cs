@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LongrangeMissile : MonoBehaviour
 {
@@ -28,9 +30,12 @@ public class LongrangeMissile : MonoBehaviour
     public Vector3 latestPosition;
 
     ScoreTable scoreTable;
+
+    public GameObject scoreText;
+    
     void Start()
     {
-        scoreTable = GetComponent<ScoreTable>();
+        scoreTable = scoreText.GetComponent<ScoreTable>();
         latestPosition = transform.position;
         if (gameObject.GetComponent<BoxCollider>() == null)
         {
@@ -69,7 +74,6 @@ public class LongrangeMissile : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         MakeExplosion();
-        scoreTable.HitScoreboard(100);
     }
 
     void MakeExplosion()
@@ -80,6 +84,8 @@ public class LongrangeMissile : MonoBehaviour
 
         //moving to the empty gameobject to be respawned
         deadClone.transform.parent = deadEnemyClonelist;
+
+        scoreTable.HitScoreboard();
 
         //removing enemy object from the scene after the explosion
         Destroy(gameObject, .5f);
