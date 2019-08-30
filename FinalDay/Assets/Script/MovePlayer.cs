@@ -17,11 +17,17 @@ public class MovePlayer : MonoBehaviour
     //to calculate the amount of fuel
     FuelHandler fh;
 
+    //to calculate the amount of health
+    Health health;
+
     //check if player alive
     Boolean isAlive = true;
 
     //check if there is still fuel for the spaceship
     Boolean isFuelNotEmpty = true;
+
+    //check if there is any health for the player/spaceship
+    Boolean isHealthy = true;
 
     //Rigidbody attached to spaceship
     Rigidbody m_Rigidbody;
@@ -61,6 +67,9 @@ public class MovePlayer : MonoBehaviour
     //showing fuel on the gamepanel
     public Text showFuel;
 
+    //showing health on the gamepanel
+    public Text showHealth;
+
     float countSpeed;
 
     // Start is called before the first frame update
@@ -72,8 +81,11 @@ public class MovePlayer : MonoBehaviour
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody>();
 
-        //
+        //getting the amount of fuel at start
         fh = GetComponent<FuelHandler>();
+
+        //getting the amount of health
+        health = GetComponent<Health>();
 
         //Set the speed of the GameObject
         m_Speed = 10.0f;
@@ -94,15 +106,14 @@ public class MovePlayer : MonoBehaviour
     void Update()
     {
 
-        print("dt: " + distanceTravelled);
-
         //showing information on game panel
         SetShowAltitude(latestPosition);
+
         setShowSpeed(countSpeed);
 
-        //print(fh.Fuel);
         setShowFuel(fh.Fuel);
 
+        setShowHealth(health.HealthPlayer);
     }
 
     // Here can things happen more than once in a frame
@@ -110,7 +121,7 @@ public class MovePlayer : MonoBehaviour
     {
 
         //as long as player alive the controls are enabled
-        if (isAlive && isFuelNotEmpty)
+        if (isAlive && isFuelNotEmpty && isHealthy)
         {
             EngineControl();
             MovementControl();
@@ -251,6 +262,11 @@ public class MovePlayer : MonoBehaviour
         isFuelNotEmpty = false;
     }
 
+    void PlayerNotHealthy()
+    {
+        isHealthy = false;
+    }
+    
     public void SetShowAltitude(Vector3 latestPosition)
     {
         //starting to show the altitude
@@ -273,5 +289,10 @@ public class MovePlayer : MonoBehaviour
 
         //starting to show the fuel
         showFuel.text = "Fuel: " + countFuel.ToString() + " Liter";
+    }
+
+    public void setShowHealth(int health)
+    {
+        showHealth.text = "Health: " + health.ToString();
     }
 }

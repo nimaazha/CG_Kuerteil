@@ -58,9 +58,9 @@ public class ShortrangeMissile : MonoBehaviour
 
     private void ShotTheRocket()
     {
-        transform.position += transform.forward * 100 * Time.deltaTime;
+        transform.position += transform.forward * 200 * Time.deltaTime;
         distanceTravelled = Vector3.Distance(transform.position, latestPosition);
-        if (distanceTravelled > 350)
+        if (distanceTravelled > 250)
         {
             MakeExplosion();
         }

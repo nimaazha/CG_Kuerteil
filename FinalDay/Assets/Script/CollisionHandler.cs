@@ -23,26 +23,41 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //here sends message to the MovePlayer script that the player is dead
-        MakeExplosion();
+        
+        if(collision.gameObject.tag == "Terrain")
+        {
 
-        //here to invoke the RestartScene methode by string refrence
-        Invoke("RestartScene", timeToLoad);
+            //here sends message to the MovePlayer script that the player is dead
+            MakeExplosion();
+
+            //here to invoke the RestartScene methode by string refrence
+            Invoke("RestartScene", timeToLoad);
+
+        }
+        
     }
 
     void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.tag == "Fuel")
         {
-            print("it is a hit");
             Refuel();
         }
 
+        if(collider.gameObject.tag == "Health") 
+        {
+            Recover();
+        }
     }
 
     void Refuel()
     {
         SendMessage("PlayerIsOverFueltank");
+    }
+
+    void Recover()
+    {
+        SendMessage("PlayerIsOverHealthbox");
     }
 
     void MakeExplosion()
