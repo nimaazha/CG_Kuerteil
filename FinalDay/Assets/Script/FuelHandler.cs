@@ -51,7 +51,7 @@ public class FuelHandler : MonoBehaviour
 
     void PlayerIsOverFueltank()
     {
-        fuel += 5;
+        fuel += 20;
         if (fuel > 100)
         {
             fuel = 100;

@@ -3,14 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class MovePlayer : MonoBehaviour
 {
 
     /*
-     * unityDoc
-     * https://docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+     * 
      * 
      */
 
@@ -19,6 +16,8 @@ public class MovePlayer : MonoBehaviour
 
     //to calculate the amount of health
     Health health;
+
+    ScoreTable score;
 
     //check if player alive
     Boolean isAlive = true;
@@ -87,6 +86,9 @@ public class MovePlayer : MonoBehaviour
         //getting the amount of health
         health = GetComponent<Health>();
 
+        //getting the amount of score
+        score = GetComponent<ScoreTable>();
+
         //Set the speed of the GameObject
         m_Speed = 10.0f;
 
@@ -100,12 +102,12 @@ public class MovePlayer : MonoBehaviour
         countSpeed = 0.0f;
         setShowSpeed(countSpeed);
 
+        // setShowScore(score.Scores);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         //showing information on game panel
         SetShowAltitude(latestPosition);
 
@@ -120,7 +122,7 @@ public class MovePlayer : MonoBehaviour
     void FixedUpdate()
     {
 
-        //as long as player alive the controls are enabled
+        //as long as the player is alive and the fuel not empty and the helath not zero the controls are enabled
         if (isAlive && isFuelNotEmpty && isHealthy)
         {
             EngineControl();
@@ -138,6 +140,9 @@ public class MovePlayer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            m_Rigidbody.velocity = Vector3.zero;
+            m_Rigidbody.angularVelocity = Vector3.zero; 
+
             m_Rigidbody.MovePosition(transform.position + transform.forward * calcDeltaTime);
             m_Speed -= transform.forward.y * Time.deltaTime * 40.0f;
             if (m_Speed < m_minSpeed)
@@ -154,14 +159,13 @@ public class MovePlayer : MonoBehaviour
             distanceTravelled += Vector3.Distance(transform.position, latestPosition);
             distanceTravelled = UnityEngine.Mathf.Round(distanceTravelled);
             fh.CalcFuel(distanceTravelled);
+        } //this will simulates a light and slow fall down if the UpArrow key is not pressed
+        else if (!(Input.GetKey(KeyCode.UpArrow))) 
+        {
+             m_Rigidbody.AddForce(-transform.up * 10);
+             m_Rigidbody.AddForce(transform.forward * 10);
         }
-
-        // else if !(Input.GetKey(KeyCode.UpArrow)) AND m_speed > 0 then
-        // m_speed = m_speed - 1 oder so ähnlich.  auf jeden fall pro frame immer langsamer werden
-        // muss vielleicht auch in update statt fixed update
-
     }
-
 
     void MovementControl()
     {
@@ -285,6 +289,9 @@ public class MovePlayer : MonoBehaviour
         if (countFuel <= 30)
         {
             showFuel.color = new Color(1f, 0.5f, 0.8f);
+        } else
+        {
+            showFuel.color = new Color(255, 255, 255);
         }
 
         //starting to show the fuel
@@ -295,4 +302,5 @@ public class MovePlayer : MonoBehaviour
     {
         showHealth.text = "Health: " + health.ToString();
     }
+
 }

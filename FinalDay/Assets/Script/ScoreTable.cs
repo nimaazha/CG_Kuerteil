@@ -1,25 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreTable : MonoBehaviour
 {
 
-    int scores;
+    Text text;
 
-    Text scoreText;
+    public static int scores;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        scoreText = GetComponent<Text>();
-        scoreText.text = "Scores: " + scores.ToString();
+        text = GetComponent<Text>();
+        scores = 0;
     }
 
-    public void HitScoreboard()
+    void Update()
     {
-        scores++;
-        scoreText.text = "Scores: " + scores.ToString();
+        text.text = "Score: " + scores; 
     }
+
 }

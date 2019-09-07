@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fuel
   - Terrain
+  - Building
+  - LongrangeMissile
+  - ShortrangeMissile
   layers:
   - Default
   - TransparentFX

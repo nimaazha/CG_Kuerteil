@@ -30,7 +30,6 @@ public class MoveSpaceship : MonoBehaviour
 
     //showing altitude on the gamepanel
     public Text showAltitude;
-    int countAltitude;
 
     //showing speed
     public Text showSpeed;
@@ -54,7 +53,6 @@ public class MoveSpaceship : MonoBehaviour
         latestPosition = transform.position;
 
         //init var counting Altitude
-        countAltitude = 0;
         setShowAltitude(latestPosition);
 
         //init var counting Speed

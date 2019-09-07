@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     float timeToLoad = 1f;
 
     //the amount of fuel for the spaceship
-    private int health = 100;
+    private int health = 1000;
 
     public int HealthPlayer { get => health; set => health = value; }
 
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
 
         health--;
 
-        if (health == 0)
+        if (health <= 0)
         {
             //here sends message to the MovePlayer script that the player is dead
             MakeExplosion();
@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
     void MakeExplosion()
     {
         //here to invoke the PlayerIsDead methode by string refrence
-        SendMessage("HealthIsZero");
+        SendMessage("PlayerNotHealthy");
 
         //here starts to simulate the explosion by activating the ExplosionSimulator attached to player
         deathEffect.SetActive(true);

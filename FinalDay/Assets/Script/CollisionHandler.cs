@@ -24,7 +24,7 @@ public class CollisionHandler : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         
-        if(collision.gameObject.tag == "Terrain")
+        if(collision.gameObject.tag == "Terrain" || collision.gameObject.tag == "Building")
         {
 
             //here sends message to the MovePlayer script that the player is dead
@@ -35,6 +35,15 @@ public class CollisionHandler : MonoBehaviour
 
         }
         
+        if(collision.gameObject.tag == "LongrangeMissile")
+        {
+            BeingHit();
+        }
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        SendMessage("CalcHealth");
     }
 
     void OnTriggerExit(Collider collider)
@@ -58,6 +67,11 @@ public class CollisionHandler : MonoBehaviour
     void Recover()
     {
         SendMessage("PlayerIsOverHealthbox");
+    }
+
+    void BeingHit()
+    {
+        SendMessage("CalcHealth");
     }
 
     void MakeExplosion()

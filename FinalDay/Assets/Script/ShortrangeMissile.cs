@@ -13,13 +13,13 @@ public class ShortrangeMissile : MonoBehaviour
     public GameObject deathEffect;
 
     //the game object to have the enemy clone object after it is dead
-    public Transform deadEnemyClonelist;
+    Transform deadEnemyClonelist;
 
     //range of seeing the player
     float sightRange = 250.0f;
 
     //this is the player to be targeted by this enemy rocket
-    public Transform targetPlayer;
+    Transform targetPlayer;
 
     float distanceToPlayer = Mathf.Infinity;
 
@@ -27,20 +27,18 @@ public class ShortrangeMissile : MonoBehaviour
 
     BoxCollider boxCollider;
 
-    public Vector3 latestPosition;
-
-    ScoreTable scoreTable;
-
-    public GameObject scoreText;
+    Vector3 latestPosition;
 
     void Start()
     {
-        scoreTable = scoreText.GetComponent<ScoreTable>();
         latestPosition = transform.position;
-        if (gameObject.GetComponent<BoxCollider>() == null)
-        {
-            AddBoxColliderToGameobject();
-        }
+    }
+
+    void Awake()
+    {
+        // Set up the references.
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        deadEnemyClonelist = GameObject.FindGameObjectWithTag("Respawn").transform;
     }
 
     void Update()
@@ -58,20 +56,12 @@ public class ShortrangeMissile : MonoBehaviour
 
     private void ShotTheRocket()
     {
-        transform.position += transform.forward * 200 * Time.deltaTime;
+        transform.position += transform.forward * 150 * Time.deltaTime;
         distanceTravelled = Vector3.Distance(transform.position, latestPosition);
-        if (distanceTravelled > 250)
+        if (distanceTravelled > 200)
         {
             MakeExplosion();
         }
-    }
-
-    private void AddBoxColliderToGameobject()
-    {
-        gameObject.AddComponent<BoxCollider>();
-        boxCollider = gameObject.GetComponent<BoxCollider>();
-        boxCollider.isTrigger = false;
-        boxCollider.size = new Vector3(1, 1, 4);
     }
 
     void OnParticleCollision(GameObject other)
@@ -87,8 +77,6 @@ public class ShortrangeMissile : MonoBehaviour
 
         //moving to the empty gameobject to be respawned
         deadClone.transform.parent = deadEnemyClonelist;
-
-        scoreTable.HitScoreboard();
 
         //removing enemy object from the scene after the explosion
         Destroy(gameObject, .5f);
