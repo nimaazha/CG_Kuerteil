@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 53defdfec49c3844393f7806fe5b9996
+  - enabled: 1
     path: Assets/Scenes/TakeOff.unity
     guid: f1e76e17e77f24f43aeffbb3947625f7
   m_configObjects: {}

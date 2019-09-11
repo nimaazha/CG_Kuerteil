@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
+
+    /*
+     * a simple implementation to simulate a winking light for the planeband in the scene
+     */
+
     Light testLight;
     public float timeToWait;
     void Start()

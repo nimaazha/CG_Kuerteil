@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+
     /*
-     * 
-     * 
+     * this class calculates the health of the player in the scene
+     * if the player has been hit by a rocket or damaged by the particles 
      */
 
     //explosion effect on the player
@@ -38,11 +39,11 @@ public class Health : MonoBehaviour
 
     void PlayerIsOverHealthbox()
     {
-        health += 5;
+        health += 50;
 
-        if (health > 100)
+        if (health > 1000)
         {
-            health = 100;
+            health = 1000;
         }
     }
 

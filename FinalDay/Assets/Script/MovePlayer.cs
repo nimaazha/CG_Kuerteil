@@ -7,8 +7,9 @@ public class MovePlayer : MonoBehaviour
 {
 
     /*
-     * 
-     * 
+     * this is the most important class in this game
+     * here will be controlled the movement of the player through defined keys
+     * showing important important information like HEALTH, FUEL, SPEED, ALTITUDE and SCORE on the screen
      */
 
     //to calculate the amount of fuel
@@ -17,6 +18,7 @@ public class MovePlayer : MonoBehaviour
     //to calculate the amount of health
     Health health;
 
+    //to calculate the scoreboard
     ScoreTable score;
 
     //check if player alive
@@ -69,6 +71,7 @@ public class MovePlayer : MonoBehaviour
     //showing health on the gamepanel
     public Text showHealth;
 
+    //holding the speed of the player
     float countSpeed;
 
     // Start is called before the first frame update
@@ -102,7 +105,6 @@ public class MovePlayer : MonoBehaviour
         countSpeed = 0.0f;
         setShowSpeed(countSpeed);
 
-        // setShowScore(score.Scores);
     }
 
     // Update is called once per frame
@@ -167,6 +169,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
+    //this method simulates the movement of the player
     void MovementControl()
     {
         //to avoid any unwanted rotation
@@ -266,6 +269,7 @@ public class MovePlayer : MonoBehaviour
         isFuelNotEmpty = false;
     }
 
+    //this method is called in Class Health by string refrence on having no more health and causes dead of the player
     void PlayerNotHealthy()
     {
         isHealthy = false;
@@ -285,7 +289,7 @@ public class MovePlayer : MonoBehaviour
 
     public void setShowFuel(int countFuel)
     {
-
+        //starting to show the amount of fuel if less than 30 in red color
         if (countFuel <= 30)
         {
             showFuel.color = new Color(1f, 0.5f, 0.8f);
@@ -300,6 +304,7 @@ public class MovePlayer : MonoBehaviour
 
     public void setShowHealth(int health)
     {
+        //starting to show the health
         showHealth.text = "Health: " + health.ToString();
     }
 

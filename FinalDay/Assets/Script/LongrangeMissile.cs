@@ -7,6 +7,8 @@ public class LongrangeMissile : MonoBehaviour
 {
     /*
      * this class makes behaviour of a rocket being launched if the player is in his range of sight
+     * it works in a bigger range as shortmissile and it can follow the player in the scene
+     * it will explodes after a defined range of fly
      */
 
     //range of seeing the player

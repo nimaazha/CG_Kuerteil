@@ -7,6 +7,8 @@ public class ShortrangeMissile : MonoBehaviour
 {
     /*
      * this class makes behaviour of a rocket being launched if the player is in his range of sight
+     * it works in the short range and it will be shot to the direction that player has been seen.
+     * it does not follow the player but it tries to be exploded near of player to hit him with his particles
      */
 
     //explosion effect on the player
@@ -79,6 +81,6 @@ public class ShortrangeMissile : MonoBehaviour
         deadClone.transform.parent = deadEnemyClonelist;
 
         //removing enemy object from the scene after the explosion
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, .3f);
     }
 }

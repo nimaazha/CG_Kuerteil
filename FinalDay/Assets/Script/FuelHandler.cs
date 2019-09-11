@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class FuelHandler : MonoBehaviour
 {
     /*
-     * unityDoc
-     * 
+     * here calculates the amount of fuel
+     * every 5000 unit that player flies will be reduced from the amount of fuel
+     * by flying over fuelbarrel in the scene the fuel amount would be loaded
      */
 
     //explosion effect on the player

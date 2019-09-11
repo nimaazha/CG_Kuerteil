@@ -6,7 +6,9 @@ public class SpawnEnemy : MonoBehaviour
 {
 
     /*
-     * this class makes behaviour of a rocket being launched if the player is in his range of sight
+     * this class will help to insantiate enemy object in the scene
+     * this must be attached to a collider so if the player enters the collider
+     * will be instansiated an enemy in the defined spawnpoint
      */
 
     public GameObject enemyObject;
@@ -19,6 +21,8 @@ public class SpawnEnemy : MonoBehaviour
 
     int counter;
 
+    public int numberOfEnemyToSpawn;
+
     void OnTriggerEnter(Collider collider)
     {
         counter = 0;
@@ -28,7 +32,7 @@ public class SpawnEnemy : MonoBehaviour
     void SpawnTheEnemy()
     {
      
-        if (counter < 1)
+        if (counter < numberOfEnemyToSpawn)
         {
             Instantiate(enemyObject, spawnPosition.position, spawnPosition.rotation);
         }

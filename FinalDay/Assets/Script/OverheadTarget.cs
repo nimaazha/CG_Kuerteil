@@ -6,6 +6,8 @@ public class OverheadTarget : MonoBehaviour
 {
 
     /*
+     * an easy implementation for the overhead camera to follow the player from the above
+     * 
      * unityDoc
      * https://docs.unity3d.com/Manual/MultipleCameras.html
      * 

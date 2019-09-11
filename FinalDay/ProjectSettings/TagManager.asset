@@ -9,6 +9,8 @@ TagManager:
   - Building
   - LongrangeMissile
   - ShortrangeMissile
+  - Arena
+  - Health
   layers:
   - Default
   - TransparentFX
