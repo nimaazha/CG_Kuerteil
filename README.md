@@ -11,11 +11,12 @@ If there are no fuels left, the ship will explode.
 There are two type of enemies in this game.
 ```
 * Long range Rocket: with possibility to follow the player.
-  It can see the player in a big range and can also follow him to damage him.
+  It can see the player in a big range and can also follow him to damage him. They can not make a big damage and are easy to hunt.
 
 * Short range Rocket: it can see the player and will be shot as the player is in a short range with him.
   It flies in a direct direction and tries to be exploded near to the player to damage him with his particles.
-  It also flies faster as the long range missile.
+  It also flies faster as the long range missile and makes big explosion and also big damages to the player.
+  They are hard to hunt!
 
   Both type will explode if can not achieve the player after a defined range of flight.
   For a better vision there is a skin thin sphere around the rocket so that they can be better seen in the scene.

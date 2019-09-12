@@ -11,6 +11,7 @@ TagManager:
   - ShortrangeMissile
   - Arena
   - Health
+  - ExplosionParticle
   layers:
   - Default
   - TransparentFX

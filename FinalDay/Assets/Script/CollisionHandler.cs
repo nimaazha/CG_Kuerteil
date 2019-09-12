@@ -36,7 +36,7 @@ public class CollisionHandler : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //if player hits the ground or the buildings in playscene
-        if(collision.gameObject.tag == "Terrain" || collision.gameObject.tag == "Building")
+        if (collision.gameObject.tag == "Terrain" || collision.gameObject.tag == "Building")
         {
 
             //here sends message to the MovePlayer script that the player is dead
@@ -48,16 +48,10 @@ public class CollisionHandler : MonoBehaviour
         }
 
         //if a longrange rocket hits the player
-        if(collision.gameObject.tag == "LongrangeMissile")
+        if (collision.gameObject.tag == "LongrangeMissile")
         {
             BeingHit();
         }
-    }
-
-    //in case of being hit by particles of a rocket if they are exploded near to the player
-    void OnParticleCollision(GameObject other)
-    {
-        SendMessage("CalcHealth");
     }
 
     //making the function to refule or 
@@ -68,7 +62,7 @@ public class CollisionHandler : MonoBehaviour
             Refuel();
         }
 
-        if(collider.gameObject.tag == "Health") 
+        if (collider.gameObject.tag == "Health")
         {
             Recover();
         }
@@ -90,7 +84,7 @@ public class CollisionHandler : MonoBehaviour
             alertText.text = "";
             showTime.text = "";
         }
-        
+
     }
     void Refuel()
     {

@@ -31,6 +31,14 @@ public class ShortrangeMissile : MonoBehaviour
 
     Vector3 latestPosition;
 
+    //the strength of explosion
+    public float powerOfExplosion = 10.0f;
+
+    //the radius to the explosion
+    public float radius = 20.0f;
+
+    bool isTrue = false;
+
     void Start()
     {
         latestPosition = transform.position;
@@ -56,11 +64,16 @@ public class ShortrangeMissile : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        Detonate(isTrue);
+    }
+
     private void ShotTheRocket()
     {
         transform.position += transform.forward * 150 * Time.deltaTime;
         distanceTravelled = Vector3.Distance(transform.position, latestPosition);
-        if (distanceTravelled > 200)
+        if (distanceTravelled > 150)
         {
             MakeExplosion();
         }
@@ -69,6 +82,24 @@ public class ShortrangeMissile : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         MakeExplosion();
+        ScoreTable.scores += 10;
+    }
+
+    void Detonate(bool isTrue)
+    {
+        if (isTrue)
+        {
+            Vector3 expPosition = transform.position;
+            Collider[] colliders = Physics.OverlapSphere(expPosition, radius);
+            foreach (Collider hit in colliders)
+            {
+                if (hit.gameObject.tag == "Player")
+                {
+                    targetPlayer.SendMessage("BeingHit");
+                }
+            }
+        }
+
     }
 
     void MakeExplosion()
@@ -82,5 +113,7 @@ public class ShortrangeMissile : MonoBehaviour
 
         //removing enemy object from the scene after the explosion
         Destroy(gameObject, .3f);
+
+        Detonate(true);
     }
 }
