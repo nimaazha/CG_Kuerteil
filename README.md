@@ -50,7 +50,7 @@ There are 8 invisible sphere zones in the scene, by "triggering in" every zone w
 		By pressing "space key" can shoot the enemy.
 
 * #### Pause Menu
-      By hitting "escape key" you can choose to pause or quit the game. Hitting the "ESC" again would also let you back to the game.
+      By hitting "escape key" you can choose to pause or restart or quit the game. Hitting the "ESC" again would also let you back to the game.
 
 
 ## Built With
@@ -67,8 +67,9 @@ Operating system
 
 ## License
 *Student's project for module [computer graphic](https://lsf.htw-berlin.de/qisserver/rds?state=modulBeschrGast&moduleParameter=modDescr&struct=auswahlBaum&next=wait.vm&nextdir=qispos/modulBeschr/gast&createPDF=Y&create=blobs&nodeID=auswahlBaum%7Cabschluss%3Aabschl%3D84%7Cstudiengang%3Astg%3D116%7CstgSpecials%3Avert%3D%2Cschwp%3D%2Ckzfa%3DH%2Cpversion%3D20122%7CkontoOnTop%3Apordnr%3D28773%7Cpruefung%3Apordnr%3D28657&expand=1&lastState=modulBeschrGast&asi=#auswahlBaum%7Cabschluss%3Aabschl%3D84%7Cstudiengang%3Astg%3D116%7CstgSpecials%3Avert%3D%2Cschwp%3D%2Ckzfa%3DH%2Cpversion%3D20122%7CkontoOnTop%3Apordnr%3D28773%7Cpruefung%3Apordnr%3D28657) by [applied computer science](https://ai-bachelor.htw-berlin.de/) at [HTW Berlin](https://www.htw-berlin.de/)*  
-It has been distributed with Unity3d as a freestyle practice.
-The course was provided by [**Prof. Dr.-Ing. Thomas Jung**](https://www.htw-berlin.de/hochschule/personen/person/?eid=452) at Summer semester 2019.
+The course was provided by [**Prof. Dr.-Ing. Thomas Jung**](https://www.htw-berlin.de/hochschule/personen/person/?eid=452) at summer semester 2019.  
+This Game has been distributed with Unity3d as a freestyle practice as a part of this course.
+
 
 ## References
 
@@ -89,8 +90,19 @@ The course was provided by [**Prof. Dr.-Ing. Thomas Jung**](https://www.htw-berl
 
   [Unity3d Answers](https://answers.unity.com/questions/index.html)
 
+  [Unity Learning](https://learn.unity.com/courses)
+
   All the audios/music in the game downloaded from [FreeSoundDotOrg](https://freesound.org/)
 
+* #### Learning resources that I found useful
+
+  [An introduction To Unity: raywenderlich](https://www.raywenderlich.com/unity/)
+
+  [YouTubeChannel: InfoGamer](https://www.youtube.com/channel/UCyoayn_uVt2I55ZCUuBVRcQ)
+
+  [YouTubeChannel: Barackeyes](https://www.youtube.com/user/Brackeys)
+
+  [YouTubeChannel: Jayanamgames](https://www.youtube.com/user/jayanamgames)  
 
 * #### Used in the scene "Asset Store" contents
 
@@ -98,9 +110,10 @@ The course was provided by [**Prof. Dr.-Ing. Thomas Jung**](https://www.htw-berl
 
 2. [First aid kit army](https://assetstore.unity.com/packages/3d/props/first-aid-kit-army-148353)
 
-3. EBAL STUDIOS - Space Missiles: Unfortunately this asset has been depricated and removed from unity asset store
+3. EBAL STUDIOS - Space Missiles:  
+   Unfortunately this asset has been depricated and removed from unity asset store
 
-      All the three assets above were free to use on the unity asset store.
+  All the three assets above were free to use on the unity asset store at the time they were used for this project.
 
 ## Author
 * **Nima Azimihashemi** - [Github](https://github.com/nimaazha)
